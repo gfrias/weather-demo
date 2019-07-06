@@ -10,8 +10,9 @@ const forecast = ({latitude, longitude}, callback) => {
             callback('Unable to find location. Try another search.', undefined)
         } else {
             const {temperature, precipProbability} = body.currently
+            const {summary, temperatureLow, temperatureHigh} = body.daily.data[0];
 
-            callback(undefined, `${body.daily.data[0].summary} It is currently ${temperature} degrees out. There is a ${precipProbability}% chance of rain.`)
+            callback(undefined, `${summary} It is currently ${temperature} degrees out. The high for today is ${temperatureHigh} and the low is ${temperatureLow}. There is a ${precipProbability}% chance of rain.`)
         }
     })
 }
